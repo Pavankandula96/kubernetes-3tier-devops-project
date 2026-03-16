@@ -2,8 +2,9 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: flask-backend
+  namespace: three-tier-app
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: flask-backend
@@ -17,3 +18,10 @@ spec:
         image: 930487733034.dkr.ecr.ap-south-1.amazonaws.com/flask-backend:latest
         ports:
         - containerPort: 5000
+        resources:
+          requests:
+            cpu: "100m"
+            memory: "128Mi"
+          limits:
+            cpu: "250m"
+            memory: "256Mi"
